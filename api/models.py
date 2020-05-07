@@ -56,3 +56,29 @@ class Utilisateur(AbstractUser):
     
     def has_module_perms(self, app_label):
         return True
+
+
+class Parking(models.Model):
+    UNITE_CHOICES = [
+        ('H', '1 Hour'),
+        ('30MINS', '30 Mins'),
+        ('15MINS','15 Mins')
+    ]
+    latitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
+    nb_places = models.IntegerField()
+    nb_etages = models.IntegerField()
+    heure_d_ouverture = models.TimeField()
+    heure_d_fermeture = models.TimeField()
+    prix = models.IntegerField()
+    unite_horaire = models.CharField(max_length=30, choices=UNITE_CHOICES)
+    adresse = models.CharField(max_length=30)
+    securise = models.BooleanField(default=False)
+    barriere_auto = models.BooleanField(default=False)
+    couvert = models.BooleanField(default=False)
+
+class Place(models.Model):
+    num_etage = models.IntegerField()
+    num_zone = models.CharField(max_length=10)
+    parking = models.OneToOneField(Parking, on_delete=models.CASCADE)
+    is_occupied = models.BooleanField(default=False)
