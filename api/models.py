@@ -82,3 +82,27 @@ class Place(models.Model):
     num_zone = models.CharField(max_length=10)
     parking = models.OneToOneField(Parking, on_delete=models.CASCADE)
     is_occupied = models.BooleanField(default=False)
+
+
+class Voiture(models.Model):
+    matricule = models.CharField(max_length=30)
+    owner= models.OneToOneField(Utilisateur, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.pk
+
+class Reservation(models.Model):
+    voiture = models.OneToOneField(Voiture, on_delete=models.CASCADE)
+    place = models.OneToOneField(Place, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.pk
+
+class Occupation(Reservation):
+
+    isCompleted = models.BooleanField(default=False)
+    date_debut = models.DateTimeField(auto_now=True)
+    date_fin = models.DateTimeField()
+
+    def __str__(self):
+        return self.pk
