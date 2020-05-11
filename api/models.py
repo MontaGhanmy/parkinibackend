@@ -75,6 +75,7 @@ class Parking(models.Model):
     prix = models.IntegerField()
     unite_horaire = models.CharField(max_length=30, choices=UNITE_CHOICES)
     adresse = models.CharField(max_length=80)
+    rating = models.DecimalField(max_digits=2,decimal_places=1, null=False, default=0)
     securise = models.BooleanField(default=False)
     barriere_auto = models.BooleanField(default=False)
     couvert = models.BooleanField(default=False)
