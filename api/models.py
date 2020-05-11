@@ -64,6 +64,7 @@ class Parking(models.Model):
         ('30MINS', '30 Mins'),
         ('15MINS','15 Mins')
     ]
+    owner = models.ForeignKey(Utilisateur,related_name="parkings" ,on_delete=models.CASCADE, null=True)
     latitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
     longitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
     nb_places = models.IntegerField()
