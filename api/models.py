@@ -65,6 +65,7 @@ class Parking(models.Model):
         ('15MINS','15 Mins')
     ]
     owner = models.ForeignKey(Utilisateur,related_name="parkings" ,on_delete=models.CASCADE, null=True)
+    name_parking = models.CharField(max_length=30, default="Parking")
     latitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
     longitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
     nb_places = models.IntegerField()
@@ -73,7 +74,7 @@ class Parking(models.Model):
     heure_d_fermeture = models.TimeField()
     prix = models.IntegerField()
     unite_horaire = models.CharField(max_length=30, choices=UNITE_CHOICES)
-    adresse = models.CharField(max_length=30)
+    adresse = models.CharField(max_length=80)
     securise = models.BooleanField(default=False)
     barriere_auto = models.BooleanField(default=False)
     couvert = models.BooleanField(default=False)
