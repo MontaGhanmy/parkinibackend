@@ -32,6 +32,15 @@ class LoginAPI(generics.GenericAPIView):
       "token": token.key
     })
 
+# Get User API
+class UserAPI(generics.RetrieveAPIView):
+  
+  permission_classes = [permissions.IsAuthenticated,]
+  serializer_class = UtilisateurSerializer
+
+  def get_object(self):
+    return self.request.user
+
 class ParkingViewSet(viewsets.ModelViewSet):
     queryset = Parking.objects.all()
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
