@@ -9,5 +9,6 @@ router.register(r'parkings', views.ParkingViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path('api/auth/register/', views.RegisterAPI.as_view()),
+    path('api/auth/login/', views.LoginAPI.as_view()),
     path('admin/', admin.site.urls),
 ]
