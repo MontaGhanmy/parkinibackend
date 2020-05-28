@@ -94,10 +94,10 @@ class Place(models.Model):
 
 class Voiture(models.Model):
     matricule = models.CharField(max_length=30)
-    owner= models.OneToOneField(Utilisateur, on_delete=models.CASCADE)
+    owner= models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.pk
+        return str(self.pk)
 
 class Reservation(models.Model):
     voiture = models.OneToOneField(Voiture, on_delete=models.CASCADE)

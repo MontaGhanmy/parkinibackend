@@ -1,4 +1,4 @@
-from .models import Parking, Utilisateur
+from .models import Parking, Utilisateur , Voiture
 from rest_framework import serializers
 from django.contrib.auth import authenticate
 
@@ -32,3 +32,8 @@ class LoginSerializer(serializers.Serializer):
         if user and user.is_active:
             return user
         raise serializers.ValidationError("Verify your credentials!")
+
+class VoitureSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Voiture
+        fields = '__all__'

@@ -1,5 +1,5 @@
-from .models import Parking, Utilisateur
-from .serializers import ParkingSerializer, UtilisateurSerializer, RegisterSerializer, LoginSerializer
+from .models import Parking, Utilisateur , Voiture
+from .serializers import ParkingSerializer, UtilisateurSerializer, RegisterSerializer, LoginSerializer , VoitureSerializer
 from rest_framework import viewsets, generics, permissions
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
@@ -45,6 +45,14 @@ class ParkingViewSet(viewsets.ModelViewSet):
     queryset = Parking.objects.all()
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = ParkingSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+class VoitureViewSet(viewsets.ModelViewSet):
+    queryset = Voiture.objects.all()
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    serializer_class = VoitureSerializer
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)

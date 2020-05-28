@@ -5,6 +5,8 @@ from api import views
 
 router = routers.DefaultRouter()
 router.register(r'parkings', views.ParkingViewSet)
+router.register(r'voitures', views.VoitureViewSet)
+
 
 urlpatterns = [
     path('', include(router.urls)),
