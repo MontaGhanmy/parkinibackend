@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2adaa99d-737f-44ac-b1f5-44becf6a4177" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parkini_backend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/parkini_backend/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1cXOOok2e0AQd3mO1qmqkDxiDwh" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2adaa99d-737f-44ac-b1f5-44becf6a4177" name="Default Changelist" comment="" />
+      <created>1590671441196</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1590671441196</updated>
+      <workItem from="1590671443018" duration="79000" />
+      <workItem from="1590671535484" duration="730000" />
+      <workItem from="1590672275328" duration="37000" />
+      <workItem from="1590672318041" duration="27000" />
+      <workItem from="1590672505703" duration="95000" />
+      <workItem from="1590672606722" duration="380000" />
+      <workItem from="1590672993291" duration="27000" />
+      <workItem from="1590673048610" duration="1871000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="163" y="0" key="#Project_Structure" timestamp="1590672293293">
+      <screen x="0" y="0" width="1366" height="736" />
+    </state>
+    <state x="163" y="0" key="#Project_Structure/0.0.1366.736@0.0.1366.736" timestamp="1590672293293" />
+    <state x="137" y="23" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590672342667">
+      <screen x="0" y="0" width="1366" height="736" />
+    </state>
+    <state x="137" y="23" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.736@0.0.1366.736" timestamp="1590672342667" />
+    <state x="515" y="222" key="FileChooserDialogImpl" timestamp="1590672584926">
+      <screen x="0" y="0" width="1366" height="736" />
+    </state>
+    <state x="515" y="222" key="FileChooserDialogImpl/0.0.1366.736@0.0.1366.736" timestamp="1590672584926" />
+    <state x="263" y="103" key="IDE.errors.dialog" timestamp="1590671480182">
+      <screen x="0" y="0" width="1366" height="736" />
+    </state>
+    <state x="263" y="103" key="IDE.errors.dialog/0.0.1366.736@0.0.1366.736" timestamp="1590671480182" />
+    <state x="163" y="0" key="SettingsEditor" timestamp="1590672983277">
+      <screen x="0" y="0" width="1366" height="736" />
+    </state>
+    <state x="163" y="0" key="SettingsEditor/0.0.1366.736@0.0.1366.736" timestamp="1590672983277" />
+    <state x="92" y="92" width="1182" height="552" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1590672265451">
+      <screen x="0" y="0" width="1366" height="736" />
+    </state>
+    <state x="92" y="92" width="1182" height="552" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1366.736@0.0.1366.736" timestamp="1590672265451" />
+  </component>
+</project>

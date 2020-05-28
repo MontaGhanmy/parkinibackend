@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 
 class MyUtilisateurManager(BaseUserManager):
@@ -72,6 +73,7 @@ class Parking(models.Model):
     nb_etages = models.IntegerField()
     heure_d_ouverture = models.TimeField()
     heure_d_fermeture = models.TimeField()
+    jours_d_ouverture = ArrayField(models.BooleanField(default=False), size=8, default=list)
     prix = models.IntegerField()
     unite_horaire = models.CharField(max_length=30, choices=UNITE_CHOICES)
     adresse = models.CharField(max_length=80)
@@ -79,6 +81,9 @@ class Parking(models.Model):
     securise = models.BooleanField(default=False)
     barriere_auto = models.BooleanField(default=False)
     couvert = models.BooleanField(default=False)
+    lavage = models.BooleanField(default=False)
+    telepeage = models.BooleanField(default=False)
+    WC = models.BooleanField(default=False)
 
 class Place(models.Model):
     num_etage = models.IntegerField()
