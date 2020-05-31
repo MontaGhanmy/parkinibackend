@@ -1,8 +1,9 @@
 from .models import Parking, Utilisateur , Voiture
-from .serializers import ParkingSerializer, UtilisateurSerializer, RegisterSerializer, LoginSerializer , VoitureSerializer
+from .serializers import ParkingSerializer, UtilisateurSerializer, RegisterSerializer,LoginSerializer , VoitureSerializer
 from rest_framework import viewsets, generics, permissions
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
+from rest_framework.views import APIView
 
 # USER REGISTER
 class RegisterAPI(generics.GenericAPIView):
@@ -33,13 +34,23 @@ class LoginAPI(generics.GenericAPIView):
     })
 
 # Get User API
-class UserAPI(generics.RetrieveAPIView):
+class UserAPI(APIView):
   
   permission_classes = [permissions.IsAuthenticated,]
   serializer_class = UtilisateurSerializer
 
-  def get_object(self):
-    return self.request.user
+  def get(self, request):
+    user = Utilisateur.objects.get(pk=request.user.pk)
+    # the many param informs the serializer that it will be serializing more than a single article.
+    serializer = UtilisateurSerializer(user, many=False)
+    return Response(serializer.data)
+  def put(self, request):
+    user = Utilisateur.objects.get(pk=request.user.pk)
+    data = request.data
+    serializer = UtilisateurSerializer(instance=user, data=data, partial=True)
+    if serializer.is_valid(raise_exception=True):
+      user = serializer.save()
+    return Response(serializer.data)
 
 class ParkingViewSet(viewsets.ModelViewSet):
     queryset = Parking.objects.all()
@@ -56,3 +67,5 @@ class VoitureViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+    def get_queryset(self):
+        return Voiture.objects.filter(owner=self.request.user)
