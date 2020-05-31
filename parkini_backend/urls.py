@@ -11,5 +11,6 @@ urlpatterns = [
     path('api/auth/register/', views.RegisterAPI.as_view()),
     path('api/auth/login/', views.LoginAPI.as_view()),
     path('api/auth/user/', views.UserAPI.as_view()),
+    path('api/auth/logout/', views.Logout.as_view()),
     path('admin/', admin.site.urls),
 ]

@@ -2,6 +2,7 @@ from .models import Parking, Utilisateur
 from .serializers import ParkingSerializer, UtilisateurSerializer, RegisterSerializer, LoginSerializer
 from rest_framework import viewsets, generics, permissions
 from rest_framework.response import Response
+from rest_framework import status
 from rest_framework.authtoken.models import Token
 
 # USER REGISTER
@@ -41,10 +42,18 @@ class UserAPI(generics.RetrieveAPIView):
   def get_object(self):
     return self.request.user
 
+class Logout(generics.GenericAPIView):
+  def post(self, request, format=None):
+    request.user.auth_token.delete()
+    return Response(status=status.HTTP_200_OK)
+
 class ParkingViewSet(viewsets.ModelViewSet):
     queryset = Parking.objects.all()
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = ParkingSerializer
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+    
+    def get_queryset(self):
+        return Parking.objects.filter(owner=self.request.user)
