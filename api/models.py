@@ -94,7 +94,7 @@ class Place(models.Model):
 
 class Voiture(models.Model):
     matricule = models.CharField(max_length=30)
-    owner= models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
+    owner= models.ForeignKey(Utilisateur, on_delete=models.CASCADE,null=True)
 
     def __str__(self):
         return str(self.pk)
