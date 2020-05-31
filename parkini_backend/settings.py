@@ -134,6 +134,8 @@ STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
     'COERCE_DECIMAL_TO_STRING': False,
+    'DATETIME_FORMAT': "%b %d at %I:%M %P",
+    'TIME_INPUT_FORMATS': ('%H:%M', ),
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.TokenAuthentication'
