@@ -74,7 +74,7 @@ class Parking(models.Model):
     heure_d_ouverture = models.TimeField()
     heure_d_fermeture = models.TimeField()
     jours_d_ouverture = ArrayField(models.BooleanField(default=False), size=8, default=list, null=True, blank=True)
-    prix = models.IntegerField()
+    prix = models.DecimalField(max_digits=3, decimal_places=1, null=True, blank=True)
     unite_horaire = models.CharField(max_length=30, choices=UNITE_CHOICES)
     adresse = models.CharField(max_length=80)
     rating = models.DecimalField(max_digits=2,decimal_places=1, null=False, default=0)
