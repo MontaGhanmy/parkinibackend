@@ -65,6 +65,9 @@ class ParkingViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+    
+    def pre_save(self, obj):
+        obj.parking_image = self.request.FILES.get('parking_image')
 
 class VoitureViewSet(viewsets.ModelViewSet):
     queryset = Voiture.objects.all()

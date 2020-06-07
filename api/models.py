@@ -84,6 +84,7 @@ class Parking(models.Model):
     lavage = models.BooleanField(default=False)
     telepeage = models.BooleanField(default=False)
     WC = models.BooleanField(default=False)
+    parking_image = models.ImageField(upload_to ='uploads/', blank=True, null=True)
 
 class Place(models.Model):
     num_etage = models.IntegerField()
