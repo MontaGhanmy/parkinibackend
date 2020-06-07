@@ -60,7 +60,7 @@ class Logout(generics.GenericAPIView):
 
 class ParkingViewSet(viewsets.ModelViewSet):
     queryset = Parking.objects.all()
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = ParkingSerializer
 
     def perform_create(self, serializer):
