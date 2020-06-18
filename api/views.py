@@ -85,7 +85,7 @@ class OccupationViewSet(viewsets.ModelViewSet):
   serializer_class = OccupationSerializer
   permission_classes = [permissions.IsAuthenticated]
   def get_queryset(self):
-    return Occupation.objects.filter(owner=self.request.user)
+    return Occupation.objects.filter(voiture__owner=self.request.user)
 
 class PlaceViewSet(viewsets.ModelViewSet):
   queryset = Place.objects.all()
