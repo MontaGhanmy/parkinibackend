@@ -81,12 +81,11 @@ class VoitureViewSet(viewsets.ModelViewSet):
 
 
 class OccupationViewSet(viewsets.ModelViewSet):
-    queryset = Occupation.objects.all()
-    serializer_class = OccupationSerializer
-    permission_classes = [permissions.IsAuthenticated]
-     
-    def get_queryset(self):
-        return Occupation.objects.filter(owner=self.request.user)
+  queryset = Occupation.objects.all()
+  serializer_class = OccupationSerializer
+  permission_classes = [permissions.IsAuthenticated]
+  def get_queryset(self):
+    return Occupation.objects.filter(owner=self.request.user)
 
 class PlaceViewSet(viewsets.ModelViewSet):
     queryset = Occupation.objects.all()
