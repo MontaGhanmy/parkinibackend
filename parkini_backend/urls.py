@@ -9,7 +9,7 @@ router = routers.DefaultRouter()
 router.register(r'parkings', views.ParkingViewSet)
 router.register(r'voitures', views.VoitureViewSet)
 router.register(r'occupations', views.OccupationViewSet)
-
+router.register(r'places', views.PlaceViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

@@ -1,4 +1,4 @@
-from .models import Parking, Utilisateur , Voiture, Occupation
+from .models import Parking, Utilisateur , Voiture, Occupation, Place
 from .serializers import ParkingSerializer, UtilisateurSerializer, RegisterSerializer,LoginSerializer , VoitureSerializer, OccupationSerializer
 from rest_framework import viewsets, generics, permissions
 from rest_framework.response import Response
@@ -81,5 +81,13 @@ class VoitureViewSet(viewsets.ModelViewSet):
 
 
 class OccupationViewSet(viewsets.ModelViewSet):
+    queryset = Occupation.objects.all()
+    serializer_class = OccupationSerializer
+    permission_classes = [permissions.IsAuthenticated]
+     
+    def get_queryset(self):
+        return Occupation.objects.filter(owner=self.request.user)
+
+class PlaceViewSet(viewsets.ModelViewSet):
     queryset = Occupation.objects.all()
     serializer_class = OccupationSerializer
