@@ -87,6 +87,7 @@ class Parking(models.Model):
     parking_image = models.ImageField(upload_to ='uploads/', blank=True, null=True)
 
 class Place(models.Model):
+    num_place = models.IntegerField()
     num_etage = models.IntegerField()
     num_zone = models.CharField(max_length=10)
     parking = models.OneToOneField(Parking, on_delete=models.CASCADE)
@@ -100,15 +101,9 @@ class Voiture(models.Model):
     def __str__(self):
         return str(self.pk)
 
-class Reservation(models.Model):
-    voiture = models.OneToOneField(Voiture, on_delete=models.CASCADE)
-    place = models.OneToOneField(Place, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.pk
-
-class Occupation(Reservation):
-
+class Occupation(models.Model):
+    voiture = models.ForeignKey(Voiture, on_delete=models.CASCADE)
+    place = models.ForeignKey(Place, on_delete=models.CASCADE)
     isCompleted = models.BooleanField(default=False)
     date_debut = models.DateTimeField(auto_now=True)
     date_fin = models.DateTimeField()

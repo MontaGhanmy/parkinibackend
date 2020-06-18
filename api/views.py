@@ -1,5 +1,5 @@
-from .models import Parking, Utilisateur , Voiture
-from .serializers import ParkingSerializer, UtilisateurSerializer, RegisterSerializer,LoginSerializer , VoitureSerializer
+from .models import Parking, Utilisateur , Voiture, Occupation
+from .serializers import ParkingSerializer, UtilisateurSerializer, RegisterSerializer,LoginSerializer , VoitureSerializer, OccupationSerializer
 from rest_framework import viewsets, generics, permissions
 from rest_framework.response import Response
 from rest_framework import status
@@ -78,3 +78,8 @@ class VoitureViewSet(viewsets.ModelViewSet):
         serializer.save(owner=self.request.user)
     def get_queryset(self):
         return Voiture.objects.filter(owner=self.request.user)
+
+
+class OccupationViewSet(viewsets.ModelViewSet):
+    queryset = Occupation.objects.all()
+    serializer_class = OccupationSerializer

@@ -26,7 +26,7 @@ SECRET_KEY = 'j(8wns@@+pacp4h83cs(e=^cb9o(@q5wefse09m+-t#7a1e=$w'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['parkini-back.herokuapp.com']
+ALLOWED_HOSTS = ['parkini-back.herokuapp.com','127.0.0.1']
 
 
 # Application definition

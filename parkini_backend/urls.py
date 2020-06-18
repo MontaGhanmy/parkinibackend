@@ -8,6 +8,7 @@ from api import views
 router = routers.DefaultRouter()
 router.register(r'parkings', views.ParkingViewSet)
 router.register(r'voitures', views.VoitureViewSet)
+router.register(r'occupations', views.OccupationViewSet)
 
 
 urlpatterns = [

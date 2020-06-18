@@ -1,4 +1,4 @@
-from .models import Parking, Utilisateur , Voiture
+from .models import Parking, Utilisateur , Voiture, Occupation
 from rest_framework import serializers
 from django.contrib.auth import authenticate
 
@@ -40,4 +40,9 @@ class LoginSerializer(serializers.Serializer):
 class VoitureSerializer(serializers.ModelSerializer):
     class Meta:
         model = Voiture
+        fields = '__all__'
+
+class OccupationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Occupation
         fields = '__all__'
