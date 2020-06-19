@@ -89,8 +89,8 @@ class Parking(models.Model):
 class Place(models.Model):
     num_place = models.IntegerField()
     num_etage = models.IntegerField()
-    num_zone = models.CharField(max_length=10)
-    parking = models.OneToOneField(Parking, on_delete=models.CASCADE)
+    zone = models.CharField(max_length=10)
+    parking = models.ForeignKey(Parking, on_delete=models.CASCADE)
     is_occupied = models.BooleanField(default=False)
 
 
@@ -106,7 +106,7 @@ class Occupation(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
     isCompleted = models.BooleanField(default=False)
     date_debut = models.DateTimeField(auto_now=True)
-    date_fin = models.DateTimeField()
+    date_fin = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return self.pk
