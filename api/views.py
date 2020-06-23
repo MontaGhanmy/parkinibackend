@@ -1,10 +1,11 @@
-from .models import Parking, Utilisateur , Voiture, Occupation, Place
-from .serializers import ParkingSerializer, UtilisateurSerializer, RegisterSerializer,LoginSerializer , VoitureSerializer, OccupationSerializer, PlaceSerializer
+from .models import Parking, Utilisateur , Voiture, Occupation, Place, Notification
+from .serializers import ParkingSerializer, UtilisateurSerializer, RegisterSerializer,LoginSerializer , VoitureSerializer, OccupationSerializer, PlaceSerializer, NotificationSerializer
 from rest_framework import viewsets, generics, permissions
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.views import APIView
+from rest_framework.parsers import JSONParser
 
 # USER REGISTER
 class RegisterAPI(generics.GenericAPIView):
@@ -84,9 +85,75 @@ class OccupationViewSet(viewsets.ModelViewSet):
   queryset = Occupation.objects.all()
   serializer_class = OccupationSerializer
   permission_classes = [permissions.IsAuthenticated]
+  
   def get_queryset(self):
     return Occupation.objects.filter(voiture__owner=self.request.user)
 
 class PlaceViewSet(viewsets.ModelViewSet):
   queryset = Place.objects.all()
   serializer_class = PlaceSerializer
+
+class NotificationView(APIView):
+
+    parser_classes = [JSONParser]
+
+    def post(self, request, format=None):
+        mat = request.data['matricule']
+        parking_id = request.data['id']
+        
+        t_user = Voiture.objects.get(matricule=mat).owner
+        t_parking = Parking.objects.get(pk=parking_id)
+        new_notif = Notification(t_user = t_user, t_parking=t_parking)
+        new_notif.save()
+        serializer = NotificationSerializer(new_notif, many=False)
+        return Response(serializer.data)
+      
+    def get(self, request):
+      try:
+        notif = Notification.objects.get(t_user=request.user, isConsulted=False)
+      except e:
+        return Response({"error": "no object was found!"})
+      serializer = NotificationSerializer(notif, many=False)
+      return Response(serializer.data)
+    
+    def delete(self, request):
+      try:
+        notif = Notification.objects.get(t_user=request.user, isConsulted=False)
+      except e:
+        return Response({"error": "no object was found!"})
+      notif.isConsulted = True
+      notif.save()
+      serializer = NotificationSerializer(notif, many=False)
+      
+      return Response(serializer.data)
+
+class PricingView(APIView):
+
+    parser_classes = [JSONParser]
+
+    def post(self, request, format=None):
+      duration = request.data["duration"]
+      beginSession = request.data["begin_session"]
+      endSession = request.data["end_session"]
+      
+      notif = Notification.objects.get(t_user=request.user, isConsulted=False)
+      
+      place = Place.objects.filter(parking=notif.t_parking, is_occupied=False)[0]
+      place.is_occupied = True
+      place.save()
+      
+      newOccupation = Occupation(voiture=notif.t_car, place=place, date_debut=beginSession, date_fin=endSession)
+      newOccupation.save()
+      serializer_place = PlaceSerializer(place, many=False)
+      
+      return Response({"estimated_pricing": notif.t_parking.prix * int(duration), "place": serializer_place.data})
+    
+    def put(self, request):
+      duration = request.data["duration"]
+      endSession = request.data["end_session"]
+      
+      occupation = Occupation.objects.get(voiture__owner=request.user, isCompleted=False)
+      occupation.date_fin = endSession
+      occupation.save()
+      
+      return Response({"estimated_pricing": occupation.place.parking.prix * int(duration)})

@@ -105,8 +105,18 @@ class Occupation(models.Model):
     voiture = models.ForeignKey(Voiture, on_delete=models.CASCADE)
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
     isCompleted = models.BooleanField(default=False)
-    date_debut = models.DateTimeField(auto_now=True)
+    date_debut = models.DateTimeField(blank=True, null=True)
     date_fin = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
-        return self.pk
+        return str(self.pk)
+
+class Notification(models.Model):
+    t_user = models.ForeignKey(Utilisateur, on_delete=models.CASCADE) # Target user
+    t_car = models.ForeignKey(Voiture, on_delete=models.CASCADE) # Target voiture
+    t_parking = models.ForeignKey(Parking, on_delete=models.CASCADE) # Target parking
+    isConsulted = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.pk)
+    
