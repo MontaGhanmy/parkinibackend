@@ -1,6 +1,8 @@
 from django.contrib import admin
 from .models import Utilisateur, Parking, Place, Voiture, Occupation, Notification
 
+# ADMIN FILES
+
 admin.site.register(Utilisateur)
 admin.site.register(Parking)
 admin.site.register(Place)
