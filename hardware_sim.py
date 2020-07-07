@@ -3,7 +3,7 @@ import requests
 import sys
 
 data = {"matricule": "", "id": ""}
-ENPOINT = "http://127.0.0.1:8000/notification/"
+ENPOINT = "http://parkini-back.herokuapp.com/notification/"
 try:
     data["matricule"] = str(input("Veuillez saisir votre plaque d'immatriculation:"))
 except e:
