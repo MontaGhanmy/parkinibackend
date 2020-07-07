@@ -111,7 +111,7 @@ class NotificationView(APIView):
     def get(self, request):
       try:
         notif = Notification.objects.get(t_user=request.user, isConsulted=False)
-      except e:
+      except:
         return Response({"error": "no object was found!"})
       serializer = NotificationSerializer(notif, many=False)
       return Response(serializer.data)
