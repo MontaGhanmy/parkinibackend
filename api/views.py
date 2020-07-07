@@ -103,7 +103,7 @@ class NotificationView(APIView):
         
         t_user = Voiture.objects.get(matricule=mat).owner
         t_parking = Parking.objects.get(pk=parking_id)
-        new_notif = Notification(t_user = t_user, t_parking=t_parking)
+        new_notif = Notification(t_user = t_user, t_car=Voiture.objects.get(matricule=mat), t_parking=t_parking)
         new_notif.save()
         serializer = NotificationSerializer(new_notif, many=False)
         return Response(serializer.data)
